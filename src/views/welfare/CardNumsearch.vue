@@ -188,12 +188,12 @@
                   <el-input v-model="editForm.price" placeholder="0.00" style="width: 100px; margin-right: 10px;"
                     readonly />
                 </span>
-                <el-select v-model="editForm.addtype" style="width: 80px; margin-right: 10px;">
+                <el-select v-model="editForm.addtype" v-if="editForm.state == 3"  style="width: 80px; margin-right: 10px;">
                   <el-option label="增加" value="1" />
                   <el-option label="减少" value="2" />
                 </el-select>
-                <el-input v-model="editForm.addprice" placeholder="金额" style="width: 100px; margin-right: 10px;" />
-                <el-button type="success" @click="saveEditPrice" :loading="priceSubmitting">保存</el-button>
+                <el-input v-model="editForm.addprice" v-if="editForm.state == 3"  placeholder="金额" style="width: 100px; margin-right: 10px;" />
+                <el-button type="success" v-if="editForm.state == 3"  @click="saveEditPrice" :loading="priceSubmitting">保存</el-button>
               </div>
             </el-form-item>
 
@@ -213,7 +213,7 @@
             </el-form-item>
 
             <!-- 激活状态 -->
-            <el-form-item v-if="editForm.state != 3" label="激活状态：">
+            <el-form-item v-if="editForm.state != 3" label="激活状态：" style="text-align: left;">
               <el-radio-group v-model="editForm.state">
                 <el-radio :label="1">未激活</el-radio>
                 <el-radio :label="2">已激活</el-radio>
